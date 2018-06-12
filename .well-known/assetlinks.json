@@ -2,8 +2,8 @@
   "relation": ["delegate_permission/common.handle_all_urls"],
   "target": {
     "namespace": "android_app",
-    "package_name": "ferhatozcelik.pay",
+    "package_name": "com.ferhatozcelik.payapp",
     "sha256_cert_fingerprints":
-    ["24:AE:56:7B:E3:74:8E:02:A5:8A:99:9E:D7:1E:55:2D:73:D6:40:08:26:C0:F7:29:DA:41:73:A4:10:CF:67:67"]
+    ["50:EB:D1:09:15:F0:F4:BA:C3:20:D4:90:8D:12:50:14:F3:13:64:2F:09:F7:ED:AB:A7:94:1F:70:74:10:A5:DD"]
   }
 }]
