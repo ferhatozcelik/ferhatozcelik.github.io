@@ -82,7 +82,7 @@ function saveMessage(messageText) {
 // This first saves the image in Firebase storage.
 function saveImageMessage(file) {
   // 1 - We add a message with a loading icon that will get updated with the shared image.
-  firebase.database().ref('/messages/').push({
+  firebase.database().ref('/data/').push({
     name: getUserName(),
     imageUrl: LOADING_IMAGE_URL,
     profilePicUrl: getProfilePicUrl()
