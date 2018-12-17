@@ -83,11 +83,11 @@ function saveImageMessage(file) {
   // 1 - We add a message with a loading icon that will get updated with the shared image.
   
   var userId = firebase.auth().currentUser.uid;
-  firebase.database().ref('/data/').push({
+  firebase.database().ref('/data/').child(userId).push({
     name: getUserName(),
     imageUrl: LOADING_IMAGE_URL,
     profilePicUrl: getProfilePicUrl()
-  }).then(function(messageRef) {
+}).then(function(messageRef) {
     // 2 - Upload the image to Cloud Storage.
     var filePath = firebase.auth().currentUser.uid + '/' + messageRef.key + '/' + file.name;
     return firebase.storage().ref(filePath).put(file).then(function(fileSnapshot) {
@@ -142,7 +142,7 @@ function onMediaFileSelected(event) {
   imageFormElement.reset();
 
   // Check if the file is an image.
-  if (!file.type.match('all.*')) {
+  if (!file.type.match('image.*')) {
     var data = {
       message: 'You can only share images',
       timeout: 2000
