@@ -61,7 +61,7 @@ function loadMessages() {
   firebase.database().ref('/data/' + userId).limitToLast(12).on('child_added', callback);
   firebase.database().ref('/data/' + userId).limitToLast(12).on('child_changed', callback);
   
-  firebase.database().ref('/messagesmessages/').limitToLast(12).on('child_added', callback);
+  firebase.database().ref('/messages/').limitToLast(12).on('child_added', callback);
   firebase.database().ref('/messages/').limitToLast(12).on('child_changed', callback);
 }
 
