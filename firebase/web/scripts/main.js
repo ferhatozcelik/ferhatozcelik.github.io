@@ -77,18 +77,17 @@ function saveMessage(messageText) {
   });
 }
 
+
 // Saves a new message containing an image in Firebase.
 // This first saves the image in Firebase storage.
 function saveImageMessage(file) {
   // 1 - We add a message with a loading icon that will get updated with the shared image.
-  
-  var userId = firebase.auth().currentUser.uid;
-  firebase.database().ref('/data/').child(userId).push({
+  firebase.database().ref('/messages/').push({
     name: getUserName(),
     imageUrl: LOADING_IMAGE_URL,
     profilePicUrl: getProfilePicUrl()
-}).then(function(messageRef) {
-    // 2 - Upload the image to Cloud Storage.    
+  }).then(function(messageRef) {
+    // 2 - Upload the image to Cloud Storage.
     var filePath = firebase.auth().currentUser.uid + '/' + messageRef.key + '/' + file.name;
     return firebase.storage().ref(filePath).put(file).then(function(fileSnapshot) {
       // 3 - Generate a public URL for the file.
@@ -147,7 +146,6 @@ function onMediaFileSelected(event) {
       message: 'You can only share images',
       timeout: 2000
     };
-    
     signInSnackbarElement.MaterialSnackbar.showSnackbar(data);
     return;
   }
@@ -187,6 +185,7 @@ function authStateObserver(user) {
     signOutButtonElement.removeAttribute('hidden');
 
     // Hide sign-in button.
+    signInButtonElement.setAttribute('hidden', 'true');
 
     // We save the Firebase Messaging Device token and enable notifications.
     saveMessagingDeviceToken();
@@ -197,6 +196,7 @@ function authStateObserver(user) {
     signOutButtonElement.setAttribute('hidden', 'true');
 
     // Show sign-in button.
+    signInButtonElement.removeAttribute('hidden');
   }
 }
 
@@ -230,6 +230,14 @@ var MESSAGE_TEMPLATE =
       '<div class="name"></div>' +
     '</div>';
 
+// Adds a size to Google Profile pics URLs.
+function addSizeToGoogleProfilePic(url) {
+  if (url.indexOf('googleusercontent.com') !== -1 && url.indexOf('?') === -1) {
+    return url + '?sz=150';
+  }
+  return url;
+}
+
 // A loading image URL.
 var LOADING_IMAGE_URL = 'https://www.google.com/images/spin-32.gif?a';
 
@@ -245,7 +253,7 @@ function displayMessage(key, name, text, picUrl, imageUrl) {
     messageListElement.appendChild(div);
   }
   if (picUrl) {
-    div.querySelector('.pic').style.backgroundImage = 'url(' + picUrl + ')';
+    div.querySelector('.pic').style.backgroundImage = 'url(' + addSizeToGoogleProfilePic(picUrl) + ')';
   }
   div.querySelector('.name').textContent = name;
   var messageElement = div.querySelector('.message');
@@ -325,3 +333,4 @@ initFirebaseAuth();
 
 // We load currently existing chat messages and listen to new ones.
 loadMessages();
+
