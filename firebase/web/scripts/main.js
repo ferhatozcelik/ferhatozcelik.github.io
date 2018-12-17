@@ -43,8 +43,8 @@ function loadMessages() {
     displayMessage(snap.key, data.name, data.text, data.profilePicUrl, data.imageUrl);
   };
 
-  firebase.database().ref('/messages/').limitToLast(12).on('child_added', callback);
-  firebase.database().ref('/messages/').limitToLast(12).on('child_changed', callback);
+  firebase.database().ref('/data/').limitToLast(12).on('child_added', callback);
+  firebase.database().ref('/data/').limitToLast(12).on('child_changed', callback);
 }
 
 // Saves a new message on the Firebase DB.
@@ -65,7 +65,7 @@ function saveMessage(messageText) {
 // This first saves the image in Firebase storage.
 function saveImageMessage(file) {
   // 1 - We add a message with a loading icon that will get updated with the shared image.
-  firebase.database().ref('/messages/').push({
+  firebase.database().ref('/data/').push({
     name: getUserName(),
     imageUrl: LOADING_IMAGE_URL,
     profilePicUrl: getProfilePicUrl()
