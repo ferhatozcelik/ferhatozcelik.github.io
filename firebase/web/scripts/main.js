@@ -68,7 +68,7 @@ function saveMessage(messageText) {
   // Add a new message entry to the Firebase database.
   
    var userId = firebase.auth().currentUser.uid;
-  return firebase.database().ref('/data/' + userId).push({
+  return firebase.database().ref('/data/').child(userId).push({
     name: getUserName(),
     text: messageText,
     profilePicUrl: getProfilePicUrl()
