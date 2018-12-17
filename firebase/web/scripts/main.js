@@ -57,8 +57,8 @@ function loadMessages() {
     displayMessage(snap.key, data.name, data.text, data.profilePicUrl, data.imageUrl);
   };
 
-   var userId = firebase.auth().currentUser.uid;
-  firebase.database().ref('/data/' + userId)limitToLast(12).on('child_added', callback);
+  var userId = firebase.auth().currentUser.uid;
+  firebase.database().ref('/data/' + userId).limitToLast(12).on('child_added', callback);
   firebase.database().ref('/data/' + userId).limitToLast(12).on('child_changed', callback);
 }
 
