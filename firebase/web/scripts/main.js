@@ -187,7 +187,7 @@ function authStateObserver(user) {
     signOutButtonElement.removeAttribute('hidden');
 
     // Hide sign-in button.
-    signInButtonElement.setAttribute('hidden', 'true');
+    signInButtonElement.setAttribute('hidden', 'false');
 
     // We save the Firebase Messaging Device token and enable notifications.
     saveMessagingDeviceToken();
