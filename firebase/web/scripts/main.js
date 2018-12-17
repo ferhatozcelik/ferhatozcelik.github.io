@@ -64,7 +64,8 @@ function loadMessages() {
 // Saves a new message on the Firebase DB.
 function saveMessage(messageText) {
   // Add a new message entry to the Firebase database.
-  return firebase.database().ref('/messages/').push({
+    var userid = firebase.auth().currentUser.uid + '/';
+  return firebase.database().ref(userid).push({
     name: getUserName(),
     text: messageText,
     profilePicUrl: getProfilePicUrl()
