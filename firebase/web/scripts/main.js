@@ -57,15 +57,15 @@ function loadMessages() {
     displayMessage(snap.key, data.name, data.text, data.profilePicUrl, data.imageUrl);
   };
 
-  firebase.database().ref('/messages/').limitToLast(12).on('child_added', callback);
-  firebase.database().ref('/messages/').limitToLast(12).on('child_changed', callback);
+  firebase.database().ref('/data/').limitToLast(12).on('child_added', callback);
+  firebase.database().ref('/data/').limitToLast(12).on('child_changed', callback);
 }
 
 // Saves a new message on the Firebase DB.
 function saveMessage(messageText) {
   // Add a new message entry to the Firebase database.
     var userid = firebase.auth().currentUser.uid + '/';
-  return firebase.database().ref(userid).push({
+  return firebase.database().ref('/data/').child(userid).push({
     name: getUserName(),
     text: messageText,
     profilePicUrl: getProfilePicUrl()
