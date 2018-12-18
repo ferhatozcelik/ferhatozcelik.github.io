@@ -90,7 +90,7 @@ function saveImageMessage(file) {
     profilePicUrl: getProfilePicUrl()
   }).then(function(messageRef) {
     // 2 - Upload the image to Cloud Storage.
-    var filePath = userId + file.name;
+    var filePath = '/images/' + userId + file.name;
     firebase.storage().ref(filePath).put(file).then(function(fileSnapshot) {
       // 3 - Generate a public URL for the file.
       return fileSnapshot.ref.getDownloadURL().then((url) => {
