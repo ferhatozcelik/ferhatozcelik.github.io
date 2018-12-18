@@ -91,7 +91,7 @@ function saveImageMessage(file) {
   }).then(function(messageRef) {
     // 2 - Upload the image to Cloud Storage.
     var filePath = userId + file.name;
-    return firebase.storage().ref(filePath).put(file).then(function(fileSnapshot) {
+    firebase.storage().ref(filePath).put(file).then(function(fileSnapshot) {
       // 3 - Generate a public URL for the file.
       return fileSnapshot.ref.getDownloadURL().then((url) => {
         // 4 - Update the chat message placeholder with the image’s URL.
@@ -143,7 +143,7 @@ function onMediaFileSelected(event) {
   imageFormElement.reset();
 
   // Check if the file is an image.
-  if (!file.type.match('image.*')) {
+  if (!(file.type.match('image.*'))||!(file.type.match('video.*'))) {
     var data = {
       message: 'You can only share images',
       timeout: 2000
