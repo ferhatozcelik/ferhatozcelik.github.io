@@ -84,13 +84,13 @@ function saveImageMessage(file) {
   // 1 - We add a message with a loading icon that will get updated with the shared image.
   
    var userId = firebase.auth().currentUser.uid;
-  firebase.database().ref('/data/').push({
+  firebase.database().ref('/data/').child(userId).push({
     name: getUserName(),
     imageUrl: LOADING_IMAGE_URL,
     profilePicUrl: getProfilePicUrl()
   }).then(function(messageRef) {
     // 2 - Upload the image to Cloud Storage.
-    var filePath = userId + file.name;
+    var filePath = firebase.auth().currentUser.uid + '/' + messageRef.key + '/' + file.name;
     firebase.storage().ref(filePath).put(file).then(function(fileSnapshot) {
       // 3 - Generate a public URL for the file.
       return fileSnapshot.ref.getDownloadURL().then((url) => {
