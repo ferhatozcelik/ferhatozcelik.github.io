@@ -148,7 +148,11 @@ function onMediaFileSelected(event) {
       message: 'You can only share images',
       timeout: 2000
     };
-    
+    if (!file.type.match('video.*')) {
+    var data = {
+      message: 'You can only share images',
+      timeout: 2000
+    };
     
     signInSnackbarElement.MaterialSnackbar.showSnackbar(data);
     return;
