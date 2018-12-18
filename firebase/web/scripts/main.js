@@ -94,7 +94,7 @@ function saveImageMessage(file) {
     return firebase.storage().ref(filePath).put(file).then(function(fileSnapshot) {
       // 3 - Generate a public URL for the file.
       return fileSnapshot.ref.getDownloadURL().then((url) => {
-        // 4 - Update the chat message placeholder with the image’s URL.
+        // 4 - Update the chat message placeholder with the imageâ€™s URL.
         return messageRef.update({
           imageUrl: url,
           storageUri: fileSnapshot.metadata.fullPath
