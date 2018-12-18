@@ -143,18 +143,11 @@ function onMediaFileSelected(event) {
   imageFormElement.reset();
 
   // Check if the file is an image.
-  if (file.type.match('image.*')) {
-    var data = {
-      message: 'You can only share images',
-      timeout: 2000
-    }else
-     if (file.type.match('video.*')) {
+  if (file.mimetype.match('text.*|image.*|application.*')) {
     var data = {
       message: 'You can only share images',
       timeout: 2000
     };
-    
-    
     signInSnackbarElement.MaterialSnackbar.showSnackbar(data);
     return;
   }
