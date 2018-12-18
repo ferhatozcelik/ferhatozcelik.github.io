@@ -1,0 +1,22 @@
+{
+  "name": "gcloud-resumable-upload",
+  "version": "1.0.0",
+  "description": "Simple upload form with resumeable upload to google storage",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "engines": {
+    "node": ">=0.10.3 <=7.4.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mkahn5/gcloud-resumable-uploads.git"
+  },
+  "author": "Mike Kahn, Nathan Friedly",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "~2.5.5",
+    "express": "^4.13.3"
+  }
+}
