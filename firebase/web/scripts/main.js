@@ -91,7 +91,7 @@ function saveImageMessage(file) {
   }).then(function(messageRef) {
     // 2 - Upload the image to Cloud Storage.
     var filePath = firebase.auth().currentUser.uid + '/' + messageRef.key + '/' + file.name;
-    firebase.storage().ref(filePath).put(file).then(function(fileSnapshot) {
+    return firebase.storage().ref(filePath).put(file).then(function(fileSnapshot) {
       // 3 - Generate a public URL for the file.
       return fileSnapshot.ref.getDownloadURL().then((url) => {
         // 4 - Update the chat message placeholder with the image’s URL.
