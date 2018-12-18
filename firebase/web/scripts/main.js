@@ -143,7 +143,9 @@ function onMediaFileSelected(event) {
   // Clear the selection in the file picker input.
   imageFormElement.reset();
   // Check if the file is an image.
-  if (!file.mimetype.match('audio.*|image.*|video.*')) {
+  if (!file.type.match('image.*')) {
+  }else
+    if (!file.type.match('video.*')) {
     var data = {
       message: 'You can only share images',
       timeout: 2000
