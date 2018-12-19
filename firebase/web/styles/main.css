@@ -18,8 +18,6 @@ html, body {
   font-family: 'Roboto', 'Helvetica', sans-serif;
 }
 
-
-
 main, #messages-card {
   height: 100%;
   padding-bottom: 0;
