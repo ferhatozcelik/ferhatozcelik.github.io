@@ -1385,6 +1385,9 @@ body {
 .cid-qTkA127IK8 {
   background-image: url("../../../assets/images/jumbotron.jpg");
 }
+.cid-rfIXBKicIy {
+  background-image: url("../../../assets/images/jumbotron.jpg");
+}
 .cid-rc2zt5yzrl {
   padding-top: 90px;
   padding-bottom: 90px;
@@ -1432,7 +1435,7 @@ body {
 .cid-rc2O3KX17V {
   padding-top: 0px;
   padding-bottom: 0px;
-  background-color: #465052;
+  background-image: url("../../../");
 }
 @media (max-width: 767px) {
   .cid-rc2O3KX17V .media-wrap {
