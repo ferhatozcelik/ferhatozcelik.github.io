@@ -1,0 +1,54 @@
+@import url(https://fonts.googleapis.com/css?family=Oswald:400,300,700);
+
+#ext_menu-1 .mbr-brand__name {
+  font-size: 16px;
+}
+#ext_menu-1.mbr-navbar--stuck .mbr-navbar__section {
+  background: #28324e;
+}
+#ext_menu-1 .mbr-navbar__hamburger {
+  color: #ffffff;
+}
+#header1-a H1 {
+  color: #ffffff;
+  text-align: left;
+}
+#header1-a B {
+  font-family: 'Oswald', sans-serif;
+}
+#header1-a P {
+  text-align: left;
+}
+#content5-c .mbr-header .mbr-header__text {
+  text-align: center;
+  color: #fff;
+}
+#content5-c .mbr-header .mbr-header__subtext {
+  text-align: center;
+  color: #fff;
+}
+#content5-c .mbr-article {
+  color: #fff;
+}
+#content5-d .mbr-header .mbr-header__text {
+  text-align: center;
+  color: #fff;
+}
+#content5-d .mbr-header .mbr-header__subtext {
+  text-align: center;
+  color: #fff;
+}
+#content5-d .mbr-article {
+  color: #fff;
+}
+#content5-e .mbr-header .mbr-header__text {
+  text-align: center;
+  color: #fff;
+}
+#content5-e .mbr-header .mbr-header__subtext {
+  text-align: center;
+  color: #fff;
+}
+#content5-e .mbr-article {
+  color: #fff;
+}
