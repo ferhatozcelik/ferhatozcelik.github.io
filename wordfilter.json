@@ -1,8 +1,8 @@
 {
-    "phoneNumber": [
-          "1": {
-        "id": "1",
-        "word": "New York"
+    "wordfilter": [
+     "1": {
+           "id": "1",
+           "word": "New York"
     }, 
     "2": {
         "id": "2",
