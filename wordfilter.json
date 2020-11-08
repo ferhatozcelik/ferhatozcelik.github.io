@@ -1,12 +1,12 @@
 {
-    "word1": {
-        "id": "1",
-        "word": "New York"
-    },
-    "word2": {
-        "id": "2",
-        "word": "New York"
-    }
-    
-  
+    "wordfilter": [
+        {
+            "id": "1",
+            "word": "asdfsadf"
+        },
+        {
+            "id": "2",
+            "word": "dfasdfas"
+        }
+    ]
 }
