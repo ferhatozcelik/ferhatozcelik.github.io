@@ -7,7 +7,7 @@
 <fileName>TestApp.exe</fileName>
 <md5>68D21C03B011A320478F949E6544656C</md5>
 <description>Açıklama</description>
-<launchArgs></launchArgs>
+<launchArgs>a</launchArgs>
 
 </update>
 </sharpUpdate>
