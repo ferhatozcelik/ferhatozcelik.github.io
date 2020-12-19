@@ -3,8 +3,8 @@
 
 <update appId="TestApp">
 <version>2.0.0.0</version>
-<url>https://github.com/ferhatozcelik/ferhatozcelik.github.io/blob/master/SpinCoater/SystemUpdate/Data/TestApp.zip?raw=true</url>
-<fileName>TestApp.exe</fileName>
+<url>https://github.com/ferhatozcelik/ferhatozcelik.github.io/blob/master/SpinCoater/SystemUpdate/Data/TestApp.zip</url>
+<fileName>TestApp.zip</fileName>
 <md5>68D21C03B011A320478F949E6544656C</md5>
 <description>Açıklama</description>
 <launchArgs>a</launchArgs>
