@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FreQ Dump Client</title>
+    <link rel="stylesheet" href="public/src/css/main.css">
+</head>
+
+<body>
+    <div class="proto-container">
+        <div class="proto"></div>
+        <div class="proto"></div>
+        <div class="proto"></div>
+        <div class="proto"></div>
+    </div>
+
+    <div class="container">
+        <div class="inner">
+            <div class="left">
+                <img src="images/logo.png" alt="Logo" class="logo">
+                <div class="content">
+                    <h1>FreQ Dump<span>Client</span></h1>
+                    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Dolorum, totam. Porro eos reiciendis ea,
+                         nihil corrupti, natus labore consequuntur, eius quasi consequatur asperiores? Fugiat aut molestiae repellat voluptatum, harum omnis.</p>
+                    <p class="light">by Ferhat OZCELIK | ferhatozcelik.com</p>
+                </div>
+            </div>
+            <div class="right">
+
+
+                <div class="wrapper">
+                    <div class="selectdiv">
+                        <label>
+                            <select name="speed" id="SerialSpeed">
+                                <option value="9600">9600</option>
+                                <option value="1200">1200</option>
+                                <option value="2400">2400</option>
+                                <option value="4800">4800</option>
+                                <option value="19200">19200</option>
+                                <option value="38400">38400</option>
+                                <option value="57600">57600</option>
+                                <option value="115200">115200</option>
+                            </select>
+                        </label>
+                    </div>
+
+                    <button id="SerialConnectButton" type="button" disabled>Connect Device</button>
+                </div>
+
+                <div class="wrapper">
+                    <input type="radio" name="select" id="option-1" checked>
+                    <input type="radio" name="select" id="option-2">
+                    <label for="option-1" class="option option-1">
+                        <div class="dot"></div>
+                        <span>Frequency</span>
+                    </label>
+                    <label for="option-2" class="option option-2">
+                        <div class="dot"></div>
+                        <span>Delay</span>
+                    </label>
+                </div>
+
+                <input type="text" name="commandInput" id="commandInput" placeholder="Command Write...">
+                <button id="sendCommand" type="button" onclick="sendCommand()" disabled>Send</button>
+
+
+                <div id="term" class="term"></div>
+            </div>
+        </div>
+    </div>
+
+    <script src="public/src/term.js"></script>
+    <script>
+
+        var term;
+
+
+        function sendCommand() {
+            var sendCommand = document.getElementById('commandInput').value;
+            serialWrite(sendCommand)
+        }
+
+        function calculate_size(win) {
+            var cols = Math.max(100, Math.min(80, (win.innerWidth - 280) / 7)) | 0;
+            var rows = Math.max(25, Math.min(20, (win.innerHeight - 180) / 12)) | 0;
+            return [cols, rows];
+        }
+
+        (function () {
+            window.onload = function () {
+
+                var size = calculate_size(self);
+                term = new Terminal({
+                    cols: size[0],
+                    rows: size[1],
+                    useStyle: true,
+                    screenKeys: true,
+                    cursorBlink: false
+                });
+                term.open(document.getElementById("term"));
+            };
+            window.addEventListener('resize', function () {
+                var size = calculate_size(self);
+                term.resize(size[0], size[1]);
+            });
+        }).call(this);
+
+
+        const connectButton = document.getElementById('SerialConnectButton');
+
+        let port;
+
+        if ('serial' in navigator) {
+            connectButton.addEventListener('click', function () {
+                if (port) {
+                    term.write('\x1b[31mDisconnected from Serial Port\x1b[m\r\n');
+                    port.close();
+                    port = undefined;
+                    connectButton.innerText = 'Connect';
+
+                    document.getElementById('SerialSpeed').disabled = false;
+                    document.getElementById('sendCommand').disabled = true;
+
+                }
+                else {
+                    getReader();
+                }
+            });
+
+            connectButton.disabled = false;
+        }
+        else {
+            const error = document.createElement('p');
+            error.innerHTML = '<p>Support for Serial Web API not enabled. Please enable it using chrome://flags/ and enable Experimental Web Platform fetures</p>';
+
+        }
+
+
+        let lineBuffer = '';
+        let latestValue = 0;
+
+        async function serialWrite(data) {
+            encoder = new TextEncoder();
+            const dataArrayBuffer = encoder.encode(data);
+
+            if (port && port.writable) {
+                const writer = port.writable.getWriter();
+                writer.write(dataArrayBuffer);
+                writer.releaseLock();
+            }
+        }
+
+        async function getReader() {
+            port = await navigator.serial.requestPort({});
+            var e = document.getElementById("SerialSpeed");
+            var strSpd = e.options[e.selectedIndex].value;
+
+            var speed = parseInt(strSpd);
+            await port.open({ baudRate: [speed] });
+
+            document.getElementById('SerialSpeed').disabled = true;
+            document.getElementById('sendCommand').disabled = false;
+
+            connectButton.innerText = 'Disconnect';
+            term.write('\x1b[31mConnected using Web Serial API !\x1b[m\r\n');
+
+            const appendStream = new WritableStream({
+                write(chunk) {
+                    term.write(chunk);
+                }
+            });
+
+            port.readable
+                .pipeThrough(new TextDecoderStream())
+                .pipeTo(appendStream);
+
+
+            term.on('data', function (data) {
+                serialWrite(data);
+            });
+
+        }
+    </script>
+
+    <script>
+
+        let left = document.querySelector('.left');
+        let content = document.querySelector('.content');
+        let protos = document.querySelectorAll('.proto');
+
+        left.addEventListener('mousemove', (event) => {
+            let move = (event.clientX * 0.05) + 4;
+            let move2 = (event.clientX * 0.003);
+            content.style.transform = `translateX(-${move2}%)`;
+
+            protos.forEach((proto) => {
+                proto.style.transform = `translateX(${move}%)`;
+            })
+        })
+
+
+    </script>
+</body>
+
+</html>

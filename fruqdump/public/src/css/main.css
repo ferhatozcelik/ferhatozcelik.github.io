@@ -1,0 +1,284 @@
+@import url("https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap");
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat";
+  background: #EEEEEE;
+  font-size: 18px;
+  height: 100vh;
+}
+
+.container {
+  margin: 0 auto;
+  text-align: center;
+}
+.container .logo {
+  width: 120px;
+}
+.container h1 {
+  margin: 1em 0;
+}
+.container p {
+  line-height: 1.7rem;
+}
+.container .left {
+  background: linear-gradient(160deg, #601df7 0%, #8800ff 100%);
+  padding: 1em;
+}
+.container .left p, .container .left h1 {
+  color: white;
+}
+.container .right p {
+  margin: 2em 0 1em;
+}
+.container .light {
+  color: rgba(255, 255, 255, 0.7) !important;
+  margin-top: 2em;
+}
+.container input, .container button {
+  width: calc(100% - 3em);
+  padding: 0.5em;
+  font-size: 1.3rem;
+  outline: none;
+  margin: 1em;
+}
+.container button {
+  width: calc(100% - 2em);
+  margin: 0;
+  background: #8800ff;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.attention {
+  width: 100%;
+  margin: 0.5em auto 0;
+  text-align: center;
+}
+.attention .me {
+  margin-top: 2em;
+  width: 3em;
+  border-radius: 50%;
+}
+.attention .arrow {
+  width: 15em;
+}
+
+@media only screen and (min-width: 768px) {
+  body {
+    font-size: 20px;
+  }
+  button {
+    width: 60% !important;
+  }
+  input {
+    width: calc(60% - 1em) !important;
+  }
+}
+@media only screen and (min-width: 1024px) {
+  .logo {
+    margin: 1em 0;
+  }
+  p {
+    line-height: 1.7em !important;
+  }
+  .inner {
+    display: grid;
+    grid-template-columns: 45% auto;
+  }
+  .inner .left {
+    text-align: left;
+    padding: 0 2em;
+    height: 100vh;
+    display: grid;
+  }
+  .inner .left .content {
+    padding: 0 3em;
+  }
+  .inner .left h1 {
+    margin: 0;
+    font-size: 2.4em;
+  }
+  .inner .left h1 span {
+    display: block;
+  }
+  .inner .right {
+    text-align: right;
+    align-self: center;
+    padding: 0 2em 1.5em;
+    justify-self: center;
+    margin: 20px;
+  }
+  .inner .right input {
+    width: 100% !important;
+    margin: 1em 0;
+  }
+  .inner .right button {
+    width: 100% !important;
+  }
+  .proto-container {
+    -webkit-clip-path: inset(0 45% 0 0);
+            clip-path: inset(0 45% 0 0);
+    position: absolute;
+    top: 20%;
+    height: 70%;
+    z-index: 0;
+    width: 100%;
+    pointer-events: none;
+  }
+  .proto-container .proto {
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    width: 19%;
+    height: 80%;
+    float: left;
+    margin-left: 1em;
+    transform: translateX(10%);
+  }
+}
+@media only screen and (min-width: 1600px) {
+  body {
+    font-size: 22px;
+  }
+  .content {
+    padding: 0 6em !important;
+  }
+  .right {
+    padding: 0 !important;
+  }
+
+  
+}
+
+
+@import url('https://fonts.googleapis.com/css?family=Lato:400,500,600,700&display=swap');
+.wrapper{
+  display: inline-flex;
+  background: #fff;
+  height: 100px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-evenly;
+  border-radius: 5px;
+  padding: 20px 15px;
+  box-shadow: 5px 5px 30px rgba(0,0,0,0.2);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.wrapper .option{
+  background: #fff;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  padding: 0 10px;
+  border: 2px solid lightgrey;
+  transition: all 0.3s ease;
+}
+.wrapper .option .dot{
+  height: 20px;
+  width: 20px;
+  background: #d9d9d9;
+  border-radius: 50%;
+  position: relative;
+}
+.wrapper .option .dot::before{
+  position: absolute;
+  content: "";
+  top: 4px;
+  left: 4px;
+  width: 12px;
+  height: 12px;
+  background: #0069d9;
+  border-radius: 50%;
+  opacity: 0;
+  transform: scale(1.5);
+  transition: all 0.3s ease;
+}
+input[type="radio"]{
+  display: none;
+}
+#option-1:checked:checked ~ .option-1,
+#option-2:checked:checked ~ .option-2{
+  border-color: #0069d9;
+  background: #0069d9;
+}
+#option-1:checked:checked ~ .option-1 .dot,
+#option-2:checked:checked ~ .option-2 .dot{
+  background: #fff;
+}
+#option-1:checked:checked ~ .option-1 .dot::before,
+#option-2:checked:checked ~ .option-2 .dot::before{
+  opacity: 1;
+  transform: scale(1);
+}
+.wrapper .option span{
+  font-size: 20px;
+  color: #808080;
+}
+#option-1:checked:checked ~ .option-1 span,
+#option-2:checked:checked ~ .option-2 span{
+  color: #fff;
+}
+.selectdiv {
+  position: relative;
+  /*Don't really need this just for demo styling*/
+  
+  float: left;
+  min-width: 200px;
+  margin: 10px;
+}
+
+/* IE11 hide native button (thanks Matt!) */
+select::-ms-expand {
+display: none;
+}
+
+.selectdiv:after {
+  content: '<>';
+  font: 17px "Consolas", monospace;
+  color: #333;
+  -webkit-transform: rotate(90deg);
+  -moz-transform: rotate(90deg);
+  -ms-transform: rotate(90deg);
+  transform: rotate(90deg);
+  right: 11px;
+  /*Adjust for position however you want*/
+  
+  top: 18px;
+  padding: 0 0 2px;
+  border-bottom: 1px solid #999;
+  /*left line */
+  
+  position: absolute;
+  pointer-events: none;
+}
+
+.selectdiv select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  /* Add some styling */
+  
+  display: block;
+  width: 100%;
+  max-width: 320px;
+  height: 50px;
+  margin: 5px 0px;
+  padding: 0px 24px;
+  font-size: 16px;
+  line-height: 1.75;
+  color: #333;
+  background-color: #ffffff;
+  background-image: none;
+  border: 1px solid #cccccc;
+  -ms-word-break: normal;
+  word-break: normal;
+}
