@@ -1,7 +1,8 @@
 {
+  "name": "smart-spincoater",
+  "download_url": "https://ferhatozcelik.github.io/spincoater/"
   "version": [
     "1.0.0",
     "1.1.0"
-  ],
-  "download_url": "https://ferhatozcelik.github.io/spincoater/"
+  ]
 }
