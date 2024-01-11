@@ -1,4 +1,9 @@
 {
   "version": "2.0.2",
-  "url": "https://ferhatozcelik.github.io/spincoater/smart-spincoater-1.0.0.bin"
+  "name": "smart-spincoater",
+  "url_path": "https://ferhatozcelik.github.io/spincoater/",
+  "old_version": [
+    "1.0.0",
+    "1.0.1"
+  ]
 }
