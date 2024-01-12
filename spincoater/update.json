@@ -1,5 +1,5 @@
 {
-  "version": "1.0.7",
+  "version": "1.0.8",
   "name": "smart-spincoater",
   "url_path": "https://ferhatozcelik.github.io/spincoater/",
   "old_version": [
@@ -9,6 +9,7 @@
     "1.0.3",
     "1.0.4",
     "1.0.5",
-    "1.0.6"
+    "1.0.6",
+    "1.0.7"
   ]
 }
