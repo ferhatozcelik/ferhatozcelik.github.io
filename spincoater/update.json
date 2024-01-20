@@ -1,5 +1,5 @@
 {
-  "version": "1.0.12",
+  "version": "1.0.13",
   "name": "smart-spincoater",
   "url_path": "https://ferhatozcelik.github.io/spincoater/",
   "new_features": "-bugs fixed\n-new features\n-improved performance",
@@ -15,6 +15,7 @@
     "1.0.8",
     "1.0.9",
     "1.0.10",
-    "1.0.11"
+    "1.0.11",
+    "1.0.12"
   ]
 }
