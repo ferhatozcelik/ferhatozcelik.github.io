@@ -117,7 +117,7 @@
 </head>
 <body>
 	<main class="card">
-	
+		
 		<header class="card__header">
 			<div class="avatar" aria-hidden="true">FÖ</div>
 			<div class="id">
@@ -128,21 +128,21 @@
 		</header>
 
 		<section class="actions" aria-label="Hızlı bağlantılar">
-            <div class="save-big-wrap">
-                <a class="save-big" id="vcf-top" href="#" type="text/vcard" aria-label="Rehbere kaydet">
-                    <svg class="save-big__icon" width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                        <path d="M7 3h8l4 4v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" stroke="currentColor" stroke-width="1.6"/>
-                        <path d="M7 7h7v4H7V7z" stroke="currentColor" stroke-width="1.6"/>
-                        <path d="M9 17h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-                    </svg>
-                    <span class="save-big__text">Rehbere kaydet</span>
-                </a>
-            </div>
+			<div class="save-big-wrap">
+				<a class="save-big" id="vcf-top" href="#" type="text/vcard" aria-label="Rehbere kaydet">
+					<svg class="save-big__icon" width="36" height="36" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+						<path d="M7 3h8l4 4v10a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2z" stroke="currentColor" stroke-width="1.6"/>
+						<path d="M7 7h7v4H7V7z" stroke="currentColor" stroke-width="1.6"/>
+						<path d="M9 17h6" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+					</svg>
+					<span class="save-big__text">Rehbere kaydet</span>
+				</a>
+			</div>
 			<a class="btn" href="tel:+905531501268">Ara</a>
 			<a class="btn" href="mailto:ferhatozcelik01@gmail.com">E-posta</a>
 			<a class="btn" href="https://wa.me/905531501268" target="_blank" rel="noopener">WhatsApp</a>
 			<a class="btn" href="https://ferhatozcelik.com" target="_blank" rel="noopener">Web Sitesi</a>
-	
+			
 		</section>
 	</main>
 
@@ -161,9 +161,21 @@
 				'REV:2025-09-09T19:53:48.433Z',
 				'END:VCARD'
 			].join('\n');
-			var dataUrl = 'data:text/vcard;charset=utf-8,' + encodeURIComponent(vcard);
-			document.getElementById('vcf-top').setAttribute('href', dataUrl);
-			document.getElementById('vcf-bottom').setAttribute('href', dataUrl);
+
+			var blob = new Blob([vcard], { type: 'text/x-vcard;charset=utf-8' });
+			var file = new File([blob], 'ferhat-ozcelik.vcf', { type: 'text/x-vcard' });
+			var dataUrl = 'data:text/x-vcard;charset=utf-8,' + encodeURIComponent(vcard);
+
+			function handleShareOrOpen(e){
+				e && e.preventDefault();
+				if (navigator.canShare && navigator.canShare({ files: [file] })) {
+					navigator.share({ files: [file], title: 'Ferhat ÖZÇELİK vCard' }).catch(function(){});
+				} else {
+					window.location.href = dataUrl;
+				}
+			}
+
+			document.getElementById('vcf-top').addEventListener('click', handleShareOrOpen);
 		})();
 	</script>
 </body>
